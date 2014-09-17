@@ -1,0 +1,26 @@
+### ADD OP MMD OP MMD
+000 09 3FF 0B 0BA #carrega em x em MQ e multiplica
+001 0A 000 21 0CA #carrega MQ em AC e guarda em Y
+002 15 000 21 1DA #divide por 2 e guarda em k
+
+### Aqui comeca o loop
+003 01 0CA 0C 1DA #carrega Y e divide por k
+004 0A 000 05 222 #carrega MQ em AC e soma 0 (essa soma existe por uma questao essencial, de meu esquecimento em carregar o valor do MQ em AC, esta foi a melhor forma de consertar sem ter que modificar todo o codigo)
+005 05 1DA 15 000 #adiciona em k e divide por 2
+006 21 1DA 01 0C0 #guarda o valor em k e carrega i
+007 05 111 21 0C0 #soma 1 e guarda no endereco do i
+008 01 1E1 06 111 #carrega o 9 e subtrai 1
+009 21 1E1 0F 003 #guarda a contagem regreciva e faz o pulo condicional para 003
+00A 01 1DA 0D 400
+
+### Memory data
+1E1 00 00 00 00 09 #9 contagem regreciva
+0CA 00 00 00 00 00 #Y
+1DA 00 00 00 00 00 #velocidade (k)
+0C0 00 00 00 00 00 #i (contador)
+0BA 00 00 00 00 0A #gravidade igual a 10m/s2
+3FF 00 00 00 00 A0 #x igual a 160
+
+### constants
+111 00 00 00 00 01 #um
+222 00 00 00 00 00 #zero
